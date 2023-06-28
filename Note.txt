@@ -16,3 +16,20 @@ stdlib.h
 	malloc
 	free
 	exit
+
+The server must be started first. After it's launch, it has to print it's PID.
+The client takes two parameters:
+	The server PID.
+	The string to send.
+The client must send the string passed as a parameter to the server.
+	Once the string has been received, the server must print it.
+The server has to display the string pretty quickly. Quickly means that if you think
+	it takes too long, then it's probably too long.
+
+Your server must be able to receive strings from several clients in a row without
+	needing to restart.
+
+The communication between your client and your server has to be done ONLY using
+	UNIX signals.
+
+You can only use two signals: SIGUSR1 and SIGUSR2.
