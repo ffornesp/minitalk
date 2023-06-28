@@ -1,19 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   print_u.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ffornes- <ffornes-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 15:51:59 by ffornes-          #+#    #+#             */
-/*   Updated: 2023/06/28 16:09:32 by ffornes-         ###   ########.fr       */
+/*   Created: 2022/10/03 18:42:41 by ffornes-          #+#    #+#             */
+/*   Updated: 2023/04/28 13:00:54 by ffornes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdarg.h>
 
-int	main(void)
+int	print_u(va_list args, int count)
 {
-	ft_printf("Server\n");
-	return (0);
+	unsigned long	i;
+	int				j;
+	char			str[20];
+
+	i = (unsigned long)va_arg(args, unsigned int);
+	j = 0;
+	if (i == 0)
+		str[j++] = '0';
+	while (i > 0)
+	{
+		str[j++] = (i % 10) + '0';
+		if (i < 10)
+			break ;
+		else
+			i /= 10;
+	}
+	count += j;
+	while (j--)
+		ft_putchar_fd(str[j], 1);
+	return (count);
 }

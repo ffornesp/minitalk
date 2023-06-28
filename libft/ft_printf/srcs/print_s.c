@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   print_s.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ffornes- <ffornes-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 15:51:59 by ffornes-          #+#    #+#             */
-/*   Updated: 2023/06/28 16:09:32 by ffornes-         ###   ########.fr       */
+/*   Created: 2022/10/03 17:14:50 by ffornes-          #+#    #+#             */
+/*   Updated: 2023/04/28 13:00:40 by ffornes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
+#include <stdarg.h>
 
-int	main(void)
+int	print_s(va_list args, int count)
 {
-	ft_printf("Server\n");
-	return (0);
+	char	*str;
+
+	str = va_arg(args, char *);
+	if (!str)
+		str = "(null)";
+	count += ft_strlen(str);
+	while (*str)
+		ft_putchar_fd(*(str++), 1);
+	return (count);
 }

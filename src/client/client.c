@@ -6,14 +6,14 @@
 /*   By: ffornes- <ffornes-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:51:30 by ffornes-          #+#    #+#             */
-/*   Updated: 2023/06/28 15:51:52 by ffornes-         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:09:24 by ffornes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "ft_printf.h"
 
 int	main(void)
 {
-	printf("Client\n");
+	ft_printf("Client\n");
 	return (0);
 }

@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ffornes- <ffornes-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 15:51:59 by ffornes-          #+#    #+#             */
-/*   Updated: 2023/06/28 16:09:32 by ffornes-         ###   ########.fr       */
+/*   Created: 2022/10/24 16:43:37 by ffornes-          #+#    #+#             */
+/*   Updated: 2023/04/28 15:56:11 by ffornes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	main(void)
-{
-	ft_printf("Server\n");
-	return (0);
-}
+# include <stdarg.h>
+
+int		ft_printf(const char *str, ...);
+int		print_c(va_list args, int count);
+int		print_s(va_list args, int count);
+int		print_p(va_list args, int count);
+int		print_d(va_list args, int count);
+int		print_u(va_list args, int count);
+int		print_x(va_list args, int count, char c);
+
+#endif
