@@ -1,0 +1,18 @@
+unistd.h
+	write
+	getpid
+	pause
+	sleep
+	usleep
+
+signal.h
+	signal
+	sigemptyset
+	sigaddset
+	sigaction
+	kill
+
+stdlib.h
+	malloc
+	free
+	exit
