@@ -6,7 +6,7 @@
 #    By: ffornes- <ffornes-@student.42barcel>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/26 15:00:09 by ffornes-          #+#    #+#              #
-#    Updated: 2023/06/28 16:03:05 by ffornes-         ###   ########.fr        #
+#    Updated: 2023/06/28 16:55:39 by ffornes-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,9 +73,10 @@ clean:
 			$(RM) $(OBJS) $(DEPS)
 			@make -C libft/ clean
 
-fclean:	clean
-		$(RM) $(CLIENT) $(SERVER)
-		@make -C libft/ fclean
+fclean:
+			$(RM) $(OBJS) $(DEPS)
+			$(RM) $(CLIENT) $(SERVER)
+			@make -C libft/ fclean
 
 re:	fclean all
 
