@@ -6,7 +6,7 @@
 /*   By: ffornes- <ffornes-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:51:30 by ffornes-          #+#    #+#             */
-/*   Updated: 2023/06/28 18:24:48 by ffornes-         ###   ########.fr       */
+/*   Updated: 2023/06/29 11:05:47 by ffornes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,25 @@ static void	send_bits(int server_pid, char c)
 			if (kill(server_pid, SIGUSR1))
 				pid_error();
 		}
-		else
-		{
-			if (kill(server_pid, SIGUSR2))
-				pid_error();
-		}
-		usleep_wrapper(400);
+		else if (kill(server_pid, SIGUSR2))
+			pid_error();
+		usleep_wrapper(300);
 		bit++;
 	}
+}
+
+static int	only_digit_str(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 int	main(int argc, char *argv[])
@@ -63,14 +74,14 @@ int	main(int argc, char *argv[])
 	int					server_pid;
 	int					i;
 
-	if (argc == 3)
+	if (argc != 3 || !only_digit_str(argv[1]))
 	{
-		server_pid = ft_atoi(argv[1]);
-		i = 0;
-		while (argv[2][i] != '\0')
-			send_bits(server_pid, argv[2][i++]);
+		ft_printf("Usage: ./client 'server_pid' 'string'\n");
+		return (0);
 	}
-	else
-		ft_printf("Usage: ./client 'server_pid' 'string_to_send'\n");
+	i = 0;
+	server_pid = ft_atoi(argv[1]);
+	while (argv[2][i] != '\0')
+		send_bits(server_pid, argv[2][i++]);
 	return (0);
 }
