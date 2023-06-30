@@ -6,7 +6,7 @@
 /*   By: ffornes- <ffornes-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:51:30 by ffornes-          #+#    #+#             */
-/*   Updated: 2023/06/29 11:05:47 by ffornes-         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:32:24 by ffornes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,19 @@
 #include <stdlib.h>
 #include "libft.h"
 #include "ft_printf.h"
+
+static int	signal_recieved(int signal)
+{
+	static int	received;
+
+	ft_printf("Original value: %d\n", received);
+	if (signal == SIGINT)
+	{
+		ft_printf("AYAYA\n");
+		received = 1;
+	}
+	return (received);
+}
 
 static void	pid_error(void)
 {
@@ -36,7 +49,7 @@ static void	usleep_wrapper(int time)
 	}
 }
 
-static void	send_bits(int server_pid, char c)
+static int	send_bits(int server_pid, char c)
 {
 	int	bit;
 
@@ -53,6 +66,9 @@ static void	send_bits(int server_pid, char c)
 		usleep_wrapper(300);
 		bit++;
 	}
+	if (signal_recieved(0))
+		return (0);
+	return (1);
 }
 
 static int	only_digit_str(char *str)
@@ -71,8 +87,8 @@ static int	only_digit_str(char *str)
 
 int	main(int argc, char *argv[])
 {
-	int					server_pid;
-	int					i;
+	int	server_pid;
+	int	i;
 
 	if (argc != 3 || !only_digit_str(argv[1]))
 	{
@@ -80,8 +96,15 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	i = 0;
+	signal(SIGINT, (void *)&signal_recieved);
 	server_pid = ft_atoi(argv[1]);
 	while (argv[2][i] != '\0')
-		send_bits(server_pid, argv[2][i++]);
+	{
+		if (!send_bits(server_pid, argv[2][i++]))
+		{
+			send_bits(server_pid, '\0');
+			break ;
+		}
+	}
 	return (0);
 }

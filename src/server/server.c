@@ -6,7 +6,7 @@
 /*   By: ffornes- <ffornes-@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 15:51:59 by ffornes-          #+#    #+#             */
-/*   Updated: 2023/06/29 11:05:45 by ffornes-         ###   ########.fr       */
+/*   Updated: 2023/06/30 15:08:29 by ffornes-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static void	bit_to_char(int signal)
 
 int	main(void)
 {
-//	struct sigaction	sa;
 	int	pid;
 
 	pid = getpid();
